@@ -99,16 +99,16 @@ Class null_instagram_widget extends WP_Widget {
 				$imgclass = apply_filters( 'wpiw_img_class', '' );
 				$template_part = apply_filters( 'wpiw_template_part', 'parts/wp-instagram-widget.php' );
 
-				?><ul class="<?php echo esc_attr( $ulclass ); ?>"><?php
+				?><div class="fk-insta-widget"><?php
 				foreach( $media_array as $item ) {
 					// copy the else line into a new file (parts/wp-instagram-widget.php) within your theme and customise accordingly.
 					if ( locate_template( $template_part ) !== '' ) {
 						include locate_template( $template_part );
 					} else {
-						echo '<li class="' . esc_attr( $liclass ) . '"><a href="' . esc_url( $item['link'] ) . '" target="' . esc_attr( $target ) . '"  class="' . esc_attr( $aclass ) . '"><img src="' . esc_url( $item[$size] ) . '"  alt="' . esc_attr( $item['description'] ) . '" title="' . esc_attr( $item['description'] ) . '"  class="' . esc_attr( $imgclass ) . '"/></a></li>';
+						echo '<div class="fk-insta-container"><a href="' . esc_url( $item['link'] ) . '" target="' . esc_attr( $target ) . '"><img src="' . esc_url( $item[$size] ) . '"  alt="' . esc_attr( $item['description'] ) . '" title="' . esc_attr( $item['description'] ) . '"  class="fk-insta-pic"/></a></div>';
 					}
 				}
-				?></ul><?php
+				?></div><?php
 			}
 		}
 
@@ -126,7 +126,7 @@ Class null_instagram_widget extends WP_Widget {
 		}
 
 		if ( '' !== $link ) {
-			?><p class="<?php echo esc_attr( $linkclass ); ?>"><a href="<?php echo trailingslashit( esc_url( $url ) ); ?>" rel="me" target="<?php echo esc_attr( $target ); ?>" class="<?php echo esc_attr( $linkaclass ); ?>"><?php echo wp_kses_post( $link ); ?></a></p><?php
+			?><?php
 		}
 
 		do_action( 'wpiw_after_widget', $instance );
